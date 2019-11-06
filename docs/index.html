@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pixio | Documentation</title>
+		<meta charset="utf-8">
+		<meta content="ie=edge" http-equiv="x-ua-compatible">
+		<meta content="template language" name="keywords">
+		<meta content="Left4code" name="author">
+		<meta content="Documentation" name="description">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="assets/css/main.css"/>
+		<script src="assets/plugins/jquery/jquery-2.1.1.min.js"></script>
+		<script src="assets/js/app.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="content">
+				<div class="title">Pixio Documentation</div>
+				<div class="sub-title">Ultimate PHP Photo Sharing Script</div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<aside class="side-nav">
+				<ul>
+					<li class="active"><a href="#overview">Overview</a></li>
+					<li><a href="#server-requirement">Server Requirement</a></li>
+					<li><a href="#whats-included">What's Included?</a></li>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#facebook-oauth">Facebook oAuth</a></li>
+					<li><a href="#twitter-oauth">Twitter oAuth</a></li>
+					<li><a href="#changelog">Changelog</a></li>
+				</ul>
+			</aside>
+			<section class="main">
+				<h2 id="overview">Welcome</h2>
+				<p>
+					Thank you for purchasing our premium item, Pixio ultimate PHP photo sharing script. We will walk you through the installation and setup of this project. Hold tight, it will be quick and easy.
+				</p>
+				<h2 id="server-requirement">Server Requirement</h2>
+				<p>Before starting the installation, there are some things that you must to prepare. You will need to make sure your server meets the following requirements:</p>
+				<ul>
+					<li>PHP >= 5.6.4</li>
+					<li>OpenSSL PHP Extension</li>
+					<li>PDO PHP Extension</li>
+					<li>Mbstring PHP Extension</li>
+					<li>Tokenizer PHP Extension</li>
+					<li>XML PHP Extension</li>
+				</ul>
+				<p>If you have not set up your server, you can download XAMPP on following <a href="https://www.apachefriends.org/download.html">link</a>. Please download the latest version and install on your computer.</p>
+				<h2 id="whats-included">What's Included?</h2>
+				<p>The download file will contains 3 folders: <b>pixio</b>, <b>database</b>, and <b>documentation</b>.</p>
+				<p><img src="assets/images/files.png">The <b>pixio</b> folder includes all main project files (Frontend, API's, Assets, etc). As the name, 2 others folders contains database, and documentation to help you to install this project.</p>
+				<h2 id="installation">Installation Process</h2>
+				<p>To perform the installation, extract the downloaded zip file then copy the <b>"pixio"</b> folder to the root directory of your web server. These directories are usually named htdocs, www, public_html or others. Then import the <b>"pixio.sql"</b> database file to your local server.</p>
+				<p>The next step is to configure the database on your project. Open the <b>".env"</b> file in your project directory. Then adjust the following line with the configuration on your server.</p>
+				<pre>
+	DB_DATABASE=pixio // Your database name
+	DB_USERNAME=root // Your mysql username
+	DB_PASSWORD= // Your mysql user password
+				</pre>
+				<p>Cheers! Now you can access your project via browser. The following are the user account that have registered in the database that you can use to login.</p>
+				<img src="assets/images/database.png">
+				<h2 id="facebook-oauth">Facebook oAuth</h2>
+				<p>This part will get you to set up Facebook oAuth to enable users to login or register through their facebook account. The first step is to get Facebook oAuth API Id and Secret Key. Visit <a href="https://developers.facebook.com/apps">this link</a> to go to Facebook Developer page and create new App.</p>
+				<img src="assets/images/create-facebook-app.png">
+				<p>While creating a new App there will be a popup that asked you to fill display name and contact email. You can fill the display name with <b>"Pixio"</b> or something else.</p>
+				<img src="assets/images/create-facebook-app-popup.png">
+				<p>Now go to <b>Dashboard</b> menu and scroll down the page until you find <b>"Add a Product"</b> section. Choose <b>Facebook Login</b> and click <b>Set Up</b>.</p>
+				<img src="assets/images/setup-facebook-login.png">
+				<p>If you find this things appear just skip ahead and move to <b>(Settings > Basic)</b> menu.</p>
+				<img src="assets/images/skip-facebook-login.png">
+				<p>There you will find <b>App Id</b> and <b>App Secret</b> that will be used in our Laravel config.</p>
+				<img src="assets/images/facebook-api-key-id.png">
+				<p>Now lets add it to <b>.env</b> file.</p>
+				<pre>
+	FACEBOOK_CLIENT_ID=app-id // Your App Id
+	FACEBOOK_CLIENT_SECRET=app-secret // Your App Secret
+	CALLBACK_URL_FACEBOOK=https://{your-app.domain}/auth/facebook/callback // Your App Callback Url
+				</pre>
+				<p>Now we are going to set up callback url that used after user succesfully logged in. Go to <b>(Products > Facebook Login > Settings).</b> Add this value to <b>"Deauthorize Callback URL"</b> field:  https://{your-app.domain}/auth/facebook/callback.</p>
+				<img src="assets/images/facebook-callback-url.png">
+				<p>Don't forget to use https and click save.</p>
+				<h2 id="twitter-oauth">Twitter oAuth</h2>
+				<p>First, visit <a href="https://developer.twitter.com/en/apps">Twitter Application Management</a>. You can create your App here.</p>
+				<img src="assets/images/create-twitter-app.png">
+				<p>Once you create new App you will be asked to fill out simple form. Fill out each field and set the callback url to this value: https://{your-app.domain}/auth/twitter/callback.</p>
+				<img src="assets/images/twitter-create-app-form.png">
+				<p>Click <b>Create</b> to create your app. Once you get your App created you will find API tokens and token secret. Copy these keys and add them to Laravel config like we did before.</p>
+				<pre>
+	TWITTER_CLIENT_ID=app-id // Your App Id
+	TWITTER_CLIENT_SECRET=app-secret // Your App Secret
+	CALLBACK_URL_TWITTER=https://{your-app.domain}/auth/twitter/callback // Your App Callback Url
+				</pre>
+				<h2 id="changelog">Changelog</h2>
+				<p>
+					You'll find all Pixio releases with a log of features added and bug fixes next to each one.
+					<p><b>Version 1.0 (April 4th, 2019)</b> - Initial Release</p>
+				</p>
+			</section>
+		</div>
+	</body>
+</html>
